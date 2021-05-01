@@ -1,6 +1,5 @@
 <?php
 
-namespace MudString;
 
 require_once __DIR__ . "/MudString.php";
 
@@ -48,7 +47,8 @@ class PennMUSH {
 
     }
 
-    public static function separate_codes(string $codes)  {
+    public static function separate_codes(string $codes) : Generator {
+        $original = $codes;
         while(strlen($codes)) {
             if(in_array($codes[0], PennMUSH::$PENN_BG)) {
                 $codes = substr($codes, 1);
@@ -78,7 +78,7 @@ class PennMUSH {
                                     $data = $matches[1];
                                     $number = abs(intval($data));
                                     if($number > 255) {
-                                        throw $matches[1];
+                                        throw new ErrorException("INVALID ANSI: ". $original);
                                     }
                                     yield [$k, "bgcolor", $number, $matches[0]];
                                     break;
@@ -97,7 +97,7 @@ class PennMUSH {
                         }
                     }
                     if(!$matched) {
-                        throw $codes;
+                        throw new ErrorException("INVALID ANSI: ". $original);
                     }
                 }
             }

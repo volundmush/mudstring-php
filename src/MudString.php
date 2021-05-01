@@ -1,6 +1,5 @@
 <?php
 
-namespace MudString;
 
 class Color {
     public int $number;

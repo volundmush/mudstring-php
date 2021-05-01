@@ -3,7 +3,6 @@
 require_once __DIR__ . "/src/MudString.php";
 require_once __DIR__ . "/src/PennMUSH.php";
 
-use MudString\PennMUSH;
 
 $t = PennMUSH::decode("Have some \002chru\003very red\002c/\003 text!\n");
 print($t->render(true, true, true, true));
