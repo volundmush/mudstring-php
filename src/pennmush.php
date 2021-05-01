@@ -1,5 +1,7 @@
 <?php
 
+namespace MudString;
+
 require_once __DIR__ . "/mudstring.php";
 
 
@@ -39,10 +41,14 @@ class PennMUSH {
     ];
 
     public static function load() {
-        PennMUSH::$PENN_COLORS = json_decode(file_get_contents(__DIR__ . "/colors.json"));
+        $colors = json_decode(file_get_contents(__DIR__ . "/colors.json"));
+        if(is_array($colors)) {
+            array_push(PennMUSH::$PENN_COLORS, ...$colors);
+        }
+
     }
 
-    public static function separate_codes(string $codes) : Generator {
+    public static function separate_codes(string $codes)  {
         while(strlen($codes)) {
             if(in_array($codes[0], PennMUSH::$PENN_BG)) {
                 $codes = substr($codes, 1);
