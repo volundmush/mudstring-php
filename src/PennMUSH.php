@@ -2,7 +2,7 @@
 
 namespace MudString;
 
-require_once __DIR__ . "/mudstring.php";
+require_once __DIR__ . "/MudString.php";
 
 
 class PennMUSH {

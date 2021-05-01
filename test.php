@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . "/src/mudstring.php";
-require_once __DIR__ . "/src/pennmush.php";
+require_once __DIR__ . "/src/MudString.php";
+require_once __DIR__ . "/src/PennMUSH.php";
 
 use MudString\PennMUSH;
 
