@@ -119,7 +119,7 @@ class PennMUSH {
                                 $data = $matches[1];
                                 $number = abs(intval($data));
                                 if($number > 255) {
-                                    throw $matches[1];
+                                    throw new ErrorException("INVALID ANSI: ". $original);
                                 }
                                 yield [$k, "color", $number, $matches[0]];
                                 break;
@@ -138,7 +138,7 @@ class PennMUSH {
                     }
                 }
                 if(!$matched) {
-                    throw $codes;
+                    throw new ErrorException("INVALID ANSI: ". $original);
                 }
             }
         }
