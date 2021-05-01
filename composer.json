@@ -1,0 +1,22 @@
+{
+  "name": "volundmush/mudstring-php",
+  "description": "Simple library to generate ANSI strings from MUD-style markup",
+  "minimum-stability": "stable",
+  "license": "open",
+  "authors": [
+    {
+      "name": "Andrew 'Volund' Bastien",
+      "email": "volundmush@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "ext-json": "*",
+    "ext-ctype": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "MudString\\": "src/"
+    }
+  }
+}
