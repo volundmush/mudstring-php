@@ -1,8 +1,11 @@
 <?php
 
+namespace MudString;
 
 require_once __DIR__ . "/MudString.php";
 
+use ErrorException;
+use Generator;
 
 class PennMUSH {
     private static array $PENN_ANSI_MATCH = [
