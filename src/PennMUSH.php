@@ -40,11 +40,10 @@ class PennMUSH {
     ];
 
     public static function load() {
-        $colors = json_decode(file_get_contents(__DIR__ . "/colors.json"));
-        if(is_array($colors)) {
-            array_push(PennMUSH::$PENN_COLORS, ...$colors);
+        $colors = json_decode(file_get_contents(__DIR__."/colors.json"), true);
+        foreach($colors as $k=>$v) {
+            PennMUSH::$PENN_COLORS[$k] = $v;
         }
-
     }
 
     public static function separate_codes(string $codes) : Generator {
@@ -185,6 +184,8 @@ class PennMUSH {
         }
     }
 
+    public static array $HEXERS = ["rgb", "hex1", "hex2"];
+
     public static function apply_ansi_rule(Style &$style, array &$code) {
 
         $mode = $code[0];
@@ -194,6 +195,14 @@ class PennMUSH {
 
         if($mode == "letters") {
             PennMUSH::apply_ansi_letters($style, $data);
+        } elseif($mode == "numbers") {
+            $style->$ground = new Color($data);
+        } elseif($mode == "name") {
+            if(array_key_exists($data, PennMUSH::$PENN_COLORS)) {
+                $style->$ground = new Color(PennMUSH::$PENN_COLORS[$data]["xterm"]);
+            }
+        } elseif(in_array($mode, PennMUSH::$HEXERS)) {
+            $style->$ground = Color::fromRGB("#" . $data);
         }
 
     }
