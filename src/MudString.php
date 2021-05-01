@@ -36,7 +36,6 @@ class Color {
 
     public static function fromRGB(string $src) : Color {
         // Ssrc must be a HEX code in string notation as in the XTERM array below.
-        print("FROM RGB: " . $src . "\n");
         $check = strtolower($src);
         foreach(Color::$XTERM as $k=>$v) {
             if($v==$check) {
